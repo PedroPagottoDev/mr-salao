@@ -1,0 +1,650 @@
+/* ===== VARIÁVEIS ===== */
+:root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dark: #8B6914;
+    --offwhite: #F5F0E8;
+    --green: #2D4A3E;
+    --green-light: #3D6B5A;
+    --green-dark: #1A2E26;
+    --white: #FDFAF5;
+    --text-dark: #1A1A1A;
+    --text-muted: #666;
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: transparent;
+    transition: all 0.4s ease;
+}
+
+.navbar.scrolled {
+    background: var(--green-dark);
+    padding: 14px 60px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--offwhite);
+    letter-spacing: 4px;
+}
+
+.logo-slash {
+    color: var(--gold);
+}
+
+/* Ripple container */
+.nav-ripple-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(201, 168, 76, 0.25);
+    transform: scale(0);
+    animation: rippleAnim 0.7s ease-out forwards;
+    pointer-events: none;
+}
+
+@keyframes rippleAnim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.footer-logo-img {
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 16px;
+    opacity: 0.7;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--offwhite);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--offwhite);
+    transition: all 0.3s;
+}
+
+/* ===== HERO ===== */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 50%, var(--green-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 80px,
+        rgba(201, 168, 76, 0.02) 80px,
+        rgba(201, 168, 76, 0.02) 81px
+    );
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    animation: fadeInUp 1.2s ease forwards;
+}
+
+.hero-subtitle {
+    font-size: 0.75rem;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 300;
+}
+
+.hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 300;
+    color: var(--offwhite);
+    letter-spacing: 12px;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.hero-desc {
+    font-size: 0.8rem;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 50px;
+    font-weight: 200;
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 14px 48px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    font-weight: 300;
+}
+
+.btn-gold:hover {
+    background: var(--gold);
+    color: var(--green-dark);
+}
+
+.hero-ornament {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: pulse 2s ease infinite;
+}
+
+/* ===== SOBRE ===== */
+.sobre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 80px 60px;
+    background: var(--offwhite);
+}
+
+.sobre-linha {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    max-width: 200px;
+}
+
+.sobre-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--green);
+    text-align: center;
+    line-height: 2;
+    font-weight: 300;
+    max-width: 600px;
+}
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-tag {
+    font-size: 0.65rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    font-weight: 400;
+}
+
+.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--green-dark);
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.gold-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto;
+}
+
+/* ===== SERVIÇOS ===== */
+.servicos {
+    padding: 100px 60px;
+    background: var(--white);
+}
+
+.servicos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.servico-card {
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    padding: 40px 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    background: var(--white);
+    cursor: default;
+}
+
+.servico-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.servico-card:hover {
+    border-color: var(--gold);
+    background: var(--green-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+
+.servico-card:hover h3 {
+    color: var(--offwhite);
+}
+
+.servico-card:hover .card-icon {
+    color: var(--gold);
+}
+
+.card-icon {
+    font-size: 1.8rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: block;
+    transition: color 0.4s;
+}
+
+.servico-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: var(--green-dark);
+    letter-spacing: 1px;
+    transition: color 0.4s;
+}
+
+/* ===== HORÁRIOS ===== */
+.horarios {
+    padding: 100px 60px;
+    background: var(--green-dark);
+}
+
+.horarios .section-title {
+    color: var(--offwhite);
+}
+
+.horarios .section-tag {
+    color: var(--gold-light);
+}
+
+.horarios-container {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.horario-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: all 0.5s ease;
+}
+
+.horario-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.dia {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--offwhite);
+    font-weight: 300;
+}
+
+.divider-h {
+    color: var(--gold);
+    opacity: 0.5;
+}
+
+.hora {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    font-style: italic;
+}
+
+.hora.fechado {
+    color: rgba(245, 240, 232, 0.3);
+    font-style: normal;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.horario-item.destaque .dia {
+    color: var(--offwhite);
+}
+
+/* ===== CONTATO ===== */
+.contato {
+    padding: 100px 60px;
+    background: var(--offwhite);
+    text-align: center;
+}
+
+.contato-content {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.endereco {
+    padding: 40px;
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    background: var(--white);
+}
+
+.endereco-label {
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.endereco-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--green-dark);
+    font-weight: 300;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--green-dark);
+    padding: 40px 60px;
+    text-align: center;
+    border-top: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+.footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    color: var(--offwhite);
+    letter-spacing: 6px;
+    font-weight: 300;
+    margin-bottom: 8px;
+}
+
+.footer-name {
+    font-size: 0.7rem;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    font-weight: 300;
+}
+
+.footer-text {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: rgba(245, 240, 232, 0.4);
+    text-transform: uppercase;
+}
+
+.endereco-sub {
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+.mapa-container {
+    margin-top: 40px;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    overflow: hidden;
+    filter: grayscale(20%);
+    transition: filter 0.4s;
+}
+
+.mapa-container:hover {
+    filter: grayscale(0%);
+}
+
+/* ===== WHATSAPP FLUTUANTE ===== */
+.whatsapp-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 56px;
+    height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    transition: all 0.3s ease;
+    animation: floatWpp 3s ease-in-out infinite;
+}
+
+.whatsapp-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
+}
+
+@keyframes floatWpp {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* ===== ANIMAÇÕES AO ROLAR ===== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 20px 30px;
+    }
+
+    .navbar.scrolled {
+        padding: 14px 30px;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: var(--green-dark);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .hamburger {
+        display: flex;
+        z-index: 1001;
+    }
+
+    .sobre {
+        flex-direction: column;
+        padding: 60px 30px;
+        gap: 20px;
+    }
+
+    .sobre-linha {
+        width: 100px;
+        max-width: 100%;
+    }
+
+    .servicos,
+    .horarios,
+    .contato {
+        padding: 80px 30px;
+    }
+
+    .servicos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .horario-item {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+    }
+
+    .divider-h {
+        display: none;
+    }
+}
